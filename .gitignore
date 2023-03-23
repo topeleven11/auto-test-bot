@@ -10,4 +10,5 @@ cache
 artifacts
 
 .DS_Store
+test.csv
 
