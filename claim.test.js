@@ -32,16 +32,14 @@ fs.createReadStream("test.csv")
           tokenABI,
           signer
         );
-        // start claim: do nothing
-        
-        // // start transfer
-        const balance = await tokenContract.balanceOf(signer.address);
-        console.log(`Balance: ${balance.toString()}`);
-        console.log(`Transfer to ${cexWallet}`);
-        const tx2 = await tokenContract.transfer(cexWallet, balance, {
+        // start claim
+        const tx1 = await claimContract.claim({
           gasLimit: 1000000,
         });
-        await tx2.wait();
+        await tx1.wait();
+        // check balance 
+        const balance = await tokenContract.balanceOf(signer.address);
+        
       } catch (ex) {
         console.log("Error", ex);
       }
